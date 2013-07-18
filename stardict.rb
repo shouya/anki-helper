@@ -3,7 +3,7 @@
 require_relative 'dict'
 require_relative 'entry'
 
-require 'stardict'
+require_relative 'rbstardict'
 StarDictLib = StarDict
 
 Object.send :remove_const, :StarDict
