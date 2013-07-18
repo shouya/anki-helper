@@ -45,6 +45,7 @@ query_results.each do |dict, entries|
       f.print "\t"
       front = ent.syllables || ent.word
       front += ' ' + ent.pronunciation unless ent.pronunciation.nil?
+      f.print front
       f.print "\t"
       f.print ent.explanation
       f.puts
