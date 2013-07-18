@@ -28,10 +28,10 @@ class StarDict < Dict
     raw = @dict.find_by_word(word).chomp.strip.gsub(/\n/, '<br />')
 
     entry = Entry.new
-    entry.word = word
+    entry.word = word.gsub(/\t/, ' ')
     entry.syllables = nil
     entry.pronunciation = nil
-    entry.explanation = raw
+    entry.explanation = raw.gsub(/\t/, ' ')
     entry.dict = self.name
     entry
   end
