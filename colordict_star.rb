@@ -7,4 +7,7 @@ class ColorDictStarFilter < Filter
   def let_pass?(ele)
     ele.start_with? STAR_PREFIX
   end
+  def filter(arr)
+    super.map {|x| x[STAR_PREFIX] = ''; x }
+  end
 end
