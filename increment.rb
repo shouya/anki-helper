@@ -9,6 +9,7 @@ class IncrementFilter < Filter
       .map { |x| File.read(x).each_line
         .map(&:chomp)
         .to_a
+        .downcase
         .reject {|xx| xx =~ /^\#/ or xx =~ /^\s*$/} }
       .inject([], &:concat)
     @new_words = []

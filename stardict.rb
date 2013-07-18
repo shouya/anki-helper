@@ -29,7 +29,7 @@ class StarDict < Dict
 
     entry = Entry.new
     entry.word = word
-    entry.syllables = word
+    entry.syllables = nil
     entry.pronunciation = nil
     entry.explanation = raw
     entry.dict = self.name
