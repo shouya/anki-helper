@@ -12,7 +12,7 @@ word_list = $stdin.read.chomp.each_line.map(&:chomp).map(&:strip)
 word_list.delete('')
 
 # filter star-prefixed words (marked word in colordict)
-#word_list = colorColorDictStarFilter.new.filter(word_list)
+word_list = ColorDictStarFilter.new.filter(word_list)
 
 # filter non-former-proceeded words
 inc_fltr = IncrementFilter.new
