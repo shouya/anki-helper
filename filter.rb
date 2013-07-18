@@ -6,7 +6,7 @@ class Filter
   end
 
   def filter(arr)
-    arr.filter do |ele|
+    arr.select do |ele|
       let_pass?(ele)
     end
   end
