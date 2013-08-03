@@ -1,5 +1,7 @@
 
-%w[colordict_star increment collins_cobuild wordnet lazyworm].each do |x|
+%w[colordict_star increment
+   collins_cobuild wordnet lazyworm
+   tab_splitted_output].each do |x|
   Kernel.require_relative x
 end
 
@@ -38,18 +40,21 @@ end
 # produce the result
 puts 'producing the result.'
 
+
+# output file
 query_results.each do |dict, entries|
+  out = TabSplittedOutput.new
+  out.fields << :word
+  out.fields << lambda do |ent|
+    front = ent.syllables || ent.word
+    front += ' ' + ent.pronunciation unless ent.pronunciation.nil?
+    front
+  end
+  out.fields << :explanation
+  out.entries = entries
+
   File.open(OUTFILE_PREFIX + dict.to_s + '.txt', 'w') do |f|
-    entries.each do |ent|
-      f.print ent.word
-      f.print "\t"
-      front = ent.syllables || ent.word
-      front += ' ' + ent.pronunciation unless ent.pronunciation.nil?
-      f.print front
-      f.print "\t"
-      f.print ent.explanation
-      f.puts
-    end
+    f.write(out.render_all)
   end
 end
 
