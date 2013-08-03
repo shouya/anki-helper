@@ -2,6 +2,7 @@
 
 require_relative 'dict'
 require_relative 'entry'
+require_relative 'config'
 
 require_relative 'rbstardict'
 StarDictLib = StarDict
@@ -11,7 +12,7 @@ Object.send :remove_const, :StarDict
 class StarDict < Dict
   def initialize(dict_name)
     pwd = Dir.pwd
-    Dir.chdir(File.join(ENV['HOME'], 'backup/usefuldict'))
+    Dir.chdir(STARDICT_DIR)
     @dict = StarDictLib.new(dict_name)
     Dir.chdir(pwd)
   end
