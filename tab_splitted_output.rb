@@ -13,7 +13,7 @@ class TabSplittedOutput < Output
     @fields.map do |fld|
       content = nil
 
-      content = case entry
+      content = case fld
                 when Array  then
                   entry.send(fld.detect { |x| entry.respond_to? x }).to_s
                 when Symbol then entry.send(fld).to_s
