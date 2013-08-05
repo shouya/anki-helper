@@ -18,6 +18,7 @@ class TabSplittedOutput < Output
                   entry.send(fld.detect { |x| entry.respond_to? x }).to_s
                 when Symbol then entry.send(fld).to_s
                 when Proc   then fld.call(entry)
+                else ''
                 end
 
       content.tap(&:chomp!).tap(&:strip!)

@@ -1,11 +1,13 @@
 
 %w[colordict_star increment
    collins_cobuild wordnet lazyworm
+   merriam_webster_collegiate
    tab_splitted_output].each do |x|
   Kernel.require_relative x
 end
 
-dict_fallback_priority = [CollinsCobuild, WordNet, LazyWorm].map(&:new)
+dict_fallback_priority = [CollinsCobuild, MerriamWebsterCollegiate,
+                          WordNet, LazyWorm].map(&:new)
 OUTFILE_PREFIX = 'out-'
 
 
