@@ -15,7 +15,12 @@ word_list = ColorDictStarFilter.new.filter(word_list)
 
 # filter non-former-proceeded words
 inc_fltr = IncrementFilter.new
+
+puts word_list.length
 word_list = inc_fltr.filter(word_list)
+puts word_list.length
+
+word_list = DowncaseFilter.new.filter(word_list)
 
 # key: dict_name, val: an Array of entries
 query_results = Hash.new

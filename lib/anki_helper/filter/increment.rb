@@ -6,18 +6,17 @@ class IncrementFilter < Filter
     @prefix = prefix.to_s
     @words = Dir.glob(@prefix + '*')
       .sort {|a,b| File.ctime(b) <=> File.ctime(a) }
-      .map { |x| File.read(x).each_line
+      .map { |x| File.read(x).each_line.to_a
         .map(&:chomp)
-        .to_a
+        .reject {|xx| xx =~ /^\#/ or xx =~ /^\s*$/}
         .map(&:downcase)
-        .reject {|xx| xx =~ /^\#/ or xx =~ /^\s*$/} }
-      .inject([], &:concat)
+    }.inject([], &:concat)
     @new_words = []
   end
 
   def let_pass?(ele)
-    @new_words << ele
-    not @words.include? ele
+    @new_words << ele.downcase
+    not @words.include? ele.downcase
   end
 
   def produce_increment_file
