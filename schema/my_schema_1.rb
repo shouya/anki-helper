@@ -1,10 +1,5 @@
 
-%w[colordict_star increment
-   collins_cobuild wordnet lazyworm
-   merriam_webster_collegiate
-   tab_splitted_output].each do |x|
-  Kernel.require_relative x
-end
+require_relative '../lib/anki_helper/anki_helper'
 
 dict_fallback_priority = [CollinsCobuild, MerriamWebsterCollegiate,
                           WordNet, LazyWorm].map(&:new)
