@@ -10,7 +10,7 @@ Object.send :remove_const, :StarDict
 class StarDict < Dict
   def initialize(dict_name)
     pwd = Dir.pwd
-    Dir.chdir(STARDICT_DIR)
+    Dir.chdir(config['stardict_dir'] || '.')
     @dict = StarDictLib.new(dict_name)
     Dir.chdir(pwd)
   end
