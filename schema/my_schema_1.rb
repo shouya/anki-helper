@@ -3,6 +3,7 @@ require_relative '../lib/anki_helper/anki_helper'
 
 dict_fallback_priority = [CollinsCobuild, MerriamWebsterCollegiate,
                           WordNet, LazyWorm].map(&:new)
+dict_lw = LazyWorm.new
 OUTFILE_PREFIX = 'out-'
 
 
@@ -52,7 +53,13 @@ query_results.each do |dict, entries|
     front += ' ' + ent.pronunciation unless ent.pronunciation.nil?
     front
   end
-  out.fields << :explanation
+  out.fields << lambda do |ent|
+    back = ent.explanation.to_s
+    (back += "\n" + dict_lw.query_word(ent.word).explanation) rescue WordNotFoundException
+
+    back
+  end
+  #  out.fields << :explanation
   out.entries = entries
 
   File.open(OUTFILE_PREFIX + dict.to_s + '.txt', 'w') do |f|
