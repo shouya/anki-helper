@@ -11,7 +11,7 @@ word_list.delete('')
 
 
 # set up image fetcher
-img_fetchr = ImageFetcher.new('/home/shou/tmp/test')
+img_fetchr = ImageFetcher.new('/home/shou/Pictures/vocabs')
 
 pool = ThreadPool.new(30)
 

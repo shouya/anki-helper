@@ -1,5 +1,5 @@
 require 'google_image_api'
-require 'ap'
+# require 'ap'
 
 class ImageFetcher
   class << self
