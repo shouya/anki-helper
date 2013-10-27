@@ -11,6 +11,7 @@ end
 %w[dict filter output].each do |component|
   Dir.glob(File.join(File.dirname(__FILE__), component) + '/*.rb').each {|x| require x }
 end
+require File.join(File.dirname(__FILE__), 'image_fetcher.rb')
 
 
 
